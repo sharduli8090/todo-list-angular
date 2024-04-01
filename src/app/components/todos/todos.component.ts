@@ -12,23 +12,20 @@ import { AddtodoComponent } from '../addtodo/addtodo.component';
   styleUrl: './todos.component.css',
 })
 export class TodosComponent implements OnInit {
-  todos: Todos[]; 
-  constructor() {
-    this.todos = [
-      {
-        id: 1,
-        title: 'Todo One',
-        description: 'This is the first todo',
-        completed: false,
-      }
-    ];
-  }
+  todos: Todos[]=[];
+  constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const storedItems = localStorage.getItem('todos');
+    if(storedItems) {
+      this.todos = JSON.parse(storedItems);
+    }
+  }
 
   todoDeleteMain(todo: Todos) {
     console.log('Delete Todo', todo);
     this.todos = this.todos.filter((t) => t.id !== todo.id);
+    this.updateLocalStorage();
   }
 
   todoCheckMain(todo: Todos) {
@@ -39,10 +36,16 @@ export class TodosComponent implements OnInit {
       }
       return t;
     });
+    this.updateLocalStorage();
   }
 
   addTodoMain(todo: Todos) {
     console.log('Add Todo', todo);
     this.todos.push(todo);
+    this.updateLocalStorage();
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 }

@@ -1,8 +1,8 @@
 <div class="flex items-center justify-center flex-col">
-    <div class="font-bold text-2xl mb-4 mt-7">{{todo?.title}}</div>
+    <div class="font-bold text-2xl mb-4 mt-7" [ngClass]="{'line-through' : todo?.completed }">{{todo?.title}}</div>
     <div class="flex items-center justify-center flex-row">
-        <p>{{todo?.description}}</p>
+        <p [ngClass]="{'line-through' : todo?.completed }">{{todo?.description}}</p>
         <input type="checkbox" [checked]="todo?.completed" (click)="todoCheck()">
-        <button *ngIf="todo" class="bg-red-500 text-white px-4 py-1" (click)="todoDelete()">Delete</button>
+        <button *ngIf="todo" class="bg-red-500 text-white px-4 py-1 rounded" (click)="todoDelete()">Delete</button>
     </div>
 </div>

@@ -12,6 +12,7 @@ import { Todos } from '../../Todos';
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todos | undefined;
   @Output() todoDeleteEvent: EventEmitter<Todos> = new EventEmitter();
+  @Output() todoCheckEvent: EventEmitter<Todos> = new EventEmitter();
   ngOnInit(): void {}
 
   todoDelete(): void {
@@ -19,9 +20,17 @@ export class TodoItemComponent implements OnInit {
       this.todoDeleteLogic(this.todo);
     }
   }
-
+  todoCheck(): void {
+    if (this.todo) {
+      this.todoCheckLogic(this.todo);
+    }
+  }
+  todoCheckLogic(todo: Todos): void {
+    this.todoCheckEvent.emit(todo);
+    console.log('Event Check Emitted');
+  }
   todoDeleteLogic(todo: Todos): void {
     this.todoDeleteEvent.emit(todo);
-    console.log("Event Emitted");
+    console.log('Event Delete Emitted');
   }
 }

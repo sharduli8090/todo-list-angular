@@ -1,0 +1,7 @@
+<form (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-start my-5">
+    <input type="text" class="w-1/4 p-2 border-2 border-gray-300 rounded" placeholder="Add Title" [(ngModel)]="title">
+    <input type="text" class="w-1/4 p-2 border-2 border-gray-300 rounded" placeholder="Add Description" [(ngModel)]="description">
+    <div class="flex items-start justify-start w-1/4">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-1 mt-2 rounded ">Add Todo</button>
+    </div>
+</form>

@@ -1,24 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Todos } from '../../Todos';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { AddtodoComponent } from '../addtodo/addtodo.component';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [NgFor, TodoItemComponent, AddtodoComponent],
+  imports: [NgFor, TodoItemComponent, AddtodoComponent, NgIf],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.css',
 })
 export class TodosComponent implements OnInit {
-  todos: Todos[]=[];
+  todos: Todos[] = [];
+  noTodo: string = 'No Todos Added!';
   constructor() {}
 
   ngOnInit(): void {
     const storedItems = localStorage.getItem('todos');
-    if(storedItems) {
+    if (storedItems) {
       this.todos = JSON.parse(storedItems);
+      this.updateNoTodo();
     }
   }
 
@@ -26,6 +28,7 @@ export class TodosComponent implements OnInit {
     console.log('Delete Todo', todo);
     this.todos = this.todos.filter((t) => t.id !== todo.id);
     this.updateLocalStorage();
+    this.updateNoTodo();
   }
 
   todoCheckMain(todo: Todos) {
@@ -43,9 +46,18 @@ export class TodosComponent implements OnInit {
     console.log('Add Todo', todo);
     this.todos.push(todo);
     this.updateLocalStorage();
+    this.updateNoTodo();
   }
 
   updateLocalStorage() {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
+
+  updateNoTodo() {
+    if (this.todos.length > 0) {
+      this.noTodo = '';
+    } else {
+      this.noTodo = 'No Todos Added!';
+    }
+  }                                             
 }

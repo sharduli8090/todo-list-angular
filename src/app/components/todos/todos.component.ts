@@ -12,7 +12,7 @@ import { AddtodoComponent } from '../addtodo/addtodo.component';
   styleUrl: './todos.component.css',
 })
 export class TodosComponent implements OnInit {
-  todos: Todos[];
+  todos: Todos[]; 
   constructor() {
     this.todos = [
       {
@@ -20,39 +20,29 @@ export class TodosComponent implements OnInit {
         title: 'Todo One',
         description: 'This is the first todo',
         completed: false,
-      },
-      {
-        id: 2,
-        title: 'Todo Two',
-        description: 'This is the second todo',
-        completed: true,
-      },
-      {
-        id: 3,
-        title: 'Todo Three',
-        description: 'This is the third todo',
-        completed: false,
-      },
+      }
     ];
   }
 
-  ngOnInit(): void { 
-  }
+  ngOnInit(): void {}
 
- 
-  todoDeleteMain(todo:Todos){
-    console.log("Delete Todo", todo);
+  todoDeleteMain(todo: Todos) {
+    console.log('Delete Todo', todo);
     this.todos = this.todos.filter((t) => t.id !== todo.id);
   }
 
-  todoCheckMain(todo:Todos){
-    console.log("Check Todo", todo);
+  todoCheckMain(todo: Todos) {
+    console.log('Check Todo', todo);
     this.todos.map((t) => {
-      if(t.id === todo.id){
+      if (t.id === todo.id) {
         t.completed = !t.completed;
       }
       return t;
-    }); 
+    });
   }
 
+  addTodoMain(todo: Todos) {
+    console.log('Add Todo', todo);
+    this.todos.push(todo);
+  }
 }

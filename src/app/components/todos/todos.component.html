@@ -1,4 +1,4 @@
-<app-addtodo></app-addtodo>
+<app-addtodo (addTodo)="addTodoMain($event)"></app-addtodo>
 <div class="text-3xl text-center italic mt-6">-- Your Todos --</div>
 <div *ngFor = 'let todo of todos'>
   <app-todo-item [todo]="todo"  (todoDeleteEvent)="todoDeleteMain(todo)"  (todoCheckEvent)="todoCheckMain(todo)"></app-todo-item>

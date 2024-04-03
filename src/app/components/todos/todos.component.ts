@@ -3,6 +3,7 @@ import { Todos } from '../../Todos';
 import { NgFor, NgIf } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { AddtodoComponent } from '../addtodo/addtodo.component';
+import { TodoService } from '../../todo.service';
 
 @Component({
   selector: 'app-todos',
@@ -13,51 +14,28 @@ import { AddtodoComponent } from '../addtodo/addtodo.component';
 })
 export class TodosComponent implements OnInit {
   todos: Todos[] = [];
-  noTodo: string = 'No Todos Added!';
-  constructor() {}
+  noTodo: string = '';
+  constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    const storedItems = localStorage.getItem('todos');
-    if (storedItems) {
-      this.todos = JSON.parse(storedItems);
-      this.updateNoTodo();
-    }
+    this.todos = this.todoService.getTodos();
+    this.noTodo = this.todoService.getNoTodo();
+    console.log(this.todos, 'At Todos');
   }
 
-  todoDeleteMain(todo: Todos) {
-    console.log('Delete Todo', todo);
-    this.todos = this.todos.filter((t) => t.id !== todo.id);
-    this.updateLocalStorage();
-    this.updateNoTodo();
+  todoDeleteTodos(todo:Todos):void{
+    this.todoService.todoDeleteMain(todo);
+    this.todos = this.todoService.getTodos();
+    this.noTodo = this.todoService.getNoTodo();
+
   }
 
-  todoCheckMain(todo: Todos) {
-    console.log('Check Todo', todo);
-    this.todos.map((t) => {
-      if (t.id === todo.id) {
-        t.completed = !t.completed;
-      }
-      return t;
-    });
-    this.updateLocalStorage();
+  todoCheckTodos(todo:Todos):void{
+    this.todoService.todoCheckMain(todo);
+    this.todos = this.todoService.getTodos();
+    this.noTodo = this.todoService.getNoTodo();
+
   }
 
-  addTodoMain(todo: Todos) {
-    console.log('Add Todo', todo);
-    this.todos.push(todo);
-    this.updateLocalStorage();
-    this.updateNoTodo();
-  }
-
-  updateLocalStorage() {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
-  }
-
-  updateNoTodo() {
-    if (this.todos.length > 0) {
-      this.noTodo = '';
-    } else {
-      this.noTodo = 'No Todos Added!';
-    }
-  }                                             
+  
 }

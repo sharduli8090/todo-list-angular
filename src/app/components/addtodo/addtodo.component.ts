@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Todos } from '../../Todos';
+import { TodoService } from '../../todo.service';
 
 @Component({
   selector: 'app-addtodo',
@@ -10,7 +11,7 @@ import { Todos } from '../../Todos';
   styleUrl: './addtodo.component.css',
 })
 export class AddtodoComponent implements OnInit {
-  @Output() addTodo: EventEmitter<Todos> = new EventEmitter();
+  constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {}
   public title: string = ''; // Title of the todo
@@ -25,7 +26,7 @@ export class AddtodoComponent implements OnInit {
         description: this.description,
         completed: false,
       };
-      this.addTodo.emit(todo);
+      this.todoService.addTodoMain(todo);
       this.error = '';
     } else {
       this.error = 'Please fill out all the fields.';

@@ -1,5 +1,5 @@
-<div class="text-3xl text-center italic mt-6">-- Your Todos --</div>
-<p class="text-3xl text-gray-400 font-bold text-center m-20" *ngIf="noTodo; else todoContent">{{noTodo}}</p>
+<!-- <div class="text-3xl text-center italic mt-6">-- Your Todos --</div> -->
+<p class="text-3xl text-gray-400  text-center m-20" *ngIf="noTodo; else todoContent">{{noTodo}}</p>
 <ng-template #todoContent>
     <div *ngFor = 'let todo of todos'>
         <app-todo-item [todo]="todo"  (todoDeleteEvent)="todoDeleteTodos(todo)"  (todoCheckEvent)="todoCheckTodos(todo)"></app-todo-item>

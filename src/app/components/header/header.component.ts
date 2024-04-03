@@ -12,10 +12,11 @@ import { RouterLink, RouterModule } from '@angular/router';
   }`,
 })
 export class HeaderComponent {
+  
   button1Active: boolean = false;
   button2Active: boolean = true;
   btn_route_common: string =
-    'px-3 py-1 md:px-9 md:py-2 lg:px-10 lg:py-2 rounded text-xs md:text-md lg:text-lg';
+    'px-3 py-1 md:px-9 md:py-2 outline-none lg:px-10 lg:py-2 rounded text-xs md:text-md lg:text-lg';
 
   toggleButton1(): void {
     if (!this.button1Active) {

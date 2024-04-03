@@ -31,7 +31,7 @@ export class AddtodoComponent implements OnInit {
       };
       this.todoService.addTodoMain(todo);
       this.error = false;
-      alert('Todo Added Successfully!');
+      alert('Todo Added Successfully');
     } else {
       console.log(this.error);
       this.error = true;

@@ -1,12 +1,11 @@
-<div class="flex items-center w-full justify-center flex-col">
-    <div class="text-3xl text-center font-bold mt-6">Add Todo</div>
-    <form (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-start my-5 shadow appearance-none p-12 rounded">
-        <input type="text" class=" p-2 border-2 border-gray-300 rounded mb-5" placeholder="Add Title" name="title" [(ngModel)]="title">
-        <input type="text" class=" p-2 border-2 border-gray-300 rounded " placeholder="Add Description" name="description" [(ngModel)]="description">
-        <div class="text-red-500 my-3 text-left text-sm w-full " >{{error}}</div>
-        <div class="flex items-start justify-start w-full flex-row">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-700 ">Add Todo</button>
-            
+<div class="flex items-center w-full justify-center flex-col mt-28  md:mt-36 lg:mt-60">
+    <form (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-start lg:w-1/3 mt-0 shadow-2xl appearance-none   pb-10   w-3/4 h-auto rounded">
+    <div class="text-lg md:text-2xl lg:text-xl md:mb-5 bg-slate-400 w-full font-bold uppercase text-white py-3 lg:py-5 md:py-4 text-center rounded-tl-2xl rounded-tr-2xl ">Add Here</div>
+        <input type="text" class=" mt-10 mb-3 md:mt-5 lg:mt-6" class={{input}} placeholder="Title *" name="title" [(ngModel)]="title">
+        <input type="text" class={{input}} placeholder="Description *" name="description" [(ngModel)]="description">
+        <div [ngClass]="{'text-red-500': error, 'text-white': !error}" class="  my-3 text-center text-xs w-full">Please fill out all the fields.</div>
+        <div class="flex items-center justify-center  w-full flex-row">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-700">Add Todo</button>
         </div>
     </form>    
 </div>

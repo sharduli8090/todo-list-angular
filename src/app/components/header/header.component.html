@@ -1,11 +1,11 @@
 <div class="w-full bg-gradient-to-r from-red-400 via-pink-400 to-purple-400 flex justify-between items-center py-2 ">
     <div class="flex justify-center items-center">
-    <img src="../favicon.ico" type="image/x-icon" class="ml-3 mr-5 rounded-full bg-gray-50 p-1 w-[3rem] h-[3rem]"/>
-     <div class="text-2xl text-center font-bold text-white">TODO LIST APP</div>
+    <img src="../favicon.ico" type="image/x-icon" class="ml-3 mr-2 md:mr-3 lg:mr-5 rounded-full bg-gray-50 p-1 w-[1.5rem] h-[1.5rem] md:w-[2rem] md:h-[2rem] lg:w-[3rem] lg:h-[3rem]"/>
+     <div class="text-sm md:text-xl lg:text-2xl text-center font-bold text-white ">TODO LIST APP</div>
      </div> 
-     <div class="  ">
+     <div class="  mr-2">
     
-        <button class={{btn_route_common}} [ngClass]="{' opacity-custom': button2Active }" (click)="toggleButton2()" routerLink="/addtodos">Add Todo</button>
+        <button class={{btn_route_common}}  [ngClass]="{' opacity-custom': button2Active }" (click)="toggleButton2()" routerLink="/addtodos">Add Todo</button>
         <button class={{btn_route_common}} [ngClass]="{'opacity-custom': button1Active }" (click)="toggleButton1()" routerLink="/todos">View Todos</button>
     </div>
     </div>

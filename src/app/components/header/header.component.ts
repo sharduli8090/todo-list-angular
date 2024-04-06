@@ -11,6 +11,7 @@ import { RouterLink, RouterModule } from '@angular/router';
     background-color: rgba(299,299,299, 0.3); 
   }`,
 })
+
 export class HeaderComponent {
   
   button1Active: boolean = false;
